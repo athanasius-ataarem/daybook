@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String     @id @default(uuid())
+  phone        String     @unique // E.164, e.g. "+233241234567"
+  pinHash      String
+  shopName     String
+  createdAt    DateTime   @default(now())
+  lastSeenAt   DateTime? // updated on each successful /sync
+  failedLogins Int        @default(0)
+  lockedUntil  DateTime?
+  entries      Entry[]
+  dayCloses    DayClose[]
+}
+
+model Entry {
+  id     String @id // client UUIDv4
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  businessDate  DateTime  @db.Date // device-resolved trading day
+  kind          EntryKind
+  channel       Channel
+  amountPesewas Int // > 0 always; direction lives in `kind`
+  note          String?   @db.VarChar(200)
+
+  createdAtDevice DateTime // device clock at entry
+  createdAt       DateTime @default(now()) // server receipt
+  updatedAt       DateTime @updatedAt
+
+  voidedAt   DateTime?
+  voidReason String?   @db.VarChar(200)
+
+  @@index([userId, businessDate])
+  @@index([userId, updatedAt]) // drives the `since` delta
+}
+
+model DayClose {
+  id     String @id // client UUIDv4
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  businessDate DateTime @db.Date
+
+  openingCashPesewas  Int
+  openingMomoPesewas  Int
+  expectedCashPesewas Int // snapshot at close
+  expectedMomoPesewas Int // snapshot at close
+  countedCashPesewas  Int
+  countedMomoPesewas  Int
+
+  closedAt  DateTime? // null = re-opened
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@unique([userId, businessDate])
+  @@index([userId, updatedAt])
+}
+
+enum EntryKind {
+  SALE
+  EXPENSE
+}
+
+enum Channel {
+  CASH
+  MOMO
+}

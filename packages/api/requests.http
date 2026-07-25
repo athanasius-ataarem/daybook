@@ -1,0 +1,128 @@
+### Daybook API — the Step 2 acceptance path, in order.
+### Works with the VS Code REST Client extension, or translate to curl.
+### Cookies: REST Client keeps the session cookie between requests automatically.
+
+@base = http://localhost:4000/api
+
+### 0. Health
+GET {{base}}/health
+
+### 1. Register
+POST {{base}}/auth/register
+Content-Type: application/json
+
+{ "phone": "0249990001", "pin": "4726", "shopName": "Test Shop" }
+
+### 2. Log out, then log back in
+POST {{base}}/auth/logout
+
+###
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{ "phone": "0249990001", "pin": "4726" }
+
+### 3. Who am I
+GET {{base}}/me
+
+### 4. Sync three entries (first sync: since is null)
+POST {{base}}/sync
+Content-Type: application/json
+
+{
+  "since": null,
+  "entries": [
+    {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "businessDate": "2026-07-25",
+      "kind": "SALE", "channel": "CASH", "amountPesewas": 24000,
+      "note": "Paracetamol carton",
+      "createdAtDevice": "2026-07-25T16:12:04.000Z",
+      "voidedAt": null, "voidReason": null
+    },
+    {
+      "id": "22222222-2222-4222-8222-222222222222",
+      "businessDate": "2026-07-25",
+      "kind": "SALE", "channel": "MOMO", "amountPesewas": 8500,
+      "note": null,
+      "createdAtDevice": "2026-07-25T15:48:00.000Z",
+      "voidedAt": null, "voidReason": null
+    },
+    {
+      "id": "33333333-3333-4333-8333-333333333333",
+      "businessDate": "2026-07-25",
+      "kind": "EXPENSE", "channel": "CASH", "amountPesewas": 18000,
+      "note": "Fuel for generator",
+      "createdAtDevice": "2026-07-25T13:20:00.000Z",
+      "voidedAt": null, "voidReason": null
+    }
+  ],
+  "dayCloses": []
+}
+
+### 5. Send the SAME batch again — idempotent, expect no duplicates,
+###    rejected stays empty, and the read-back below still shows 3 entries.
+POST {{base}}/sync
+Content-Type: application/json
+
+{
+  "since": null,
+  "entries": [
+    {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "businessDate": "2026-07-25",
+      "kind": "SALE", "channel": "CASH", "amountPesewas": 24000,
+      "note": "Paracetamol carton",
+      "createdAtDevice": "2026-07-25T16:12:04.000Z",
+      "voidedAt": null, "voidReason": null
+    },
+    {
+      "id": "22222222-2222-4222-8222-222222222222",
+      "businessDate": "2026-07-25",
+      "kind": "SALE", "channel": "MOMO", "amountPesewas": 8500,
+      "note": null,
+      "createdAtDevice": "2026-07-25T15:48:00.000Z",
+      "voidedAt": null, "voidReason": null
+    },
+    {
+      "id": "33333333-3333-4333-8333-333333333333",
+      "businessDate": "2026-07-25",
+      "kind": "EXPENSE", "channel": "CASH", "amountPesewas": 18000,
+      "note": "Fuel for generator",
+      "createdAtDevice": "2026-07-25T13:20:00.000Z",
+      "voidedAt": null, "voidReason": null
+    }
+  ],
+  "dayCloses": []
+}
+
+### 6. Attempt to change amountPesewas on an existing id —
+###    expect rejected: [{ id: 1111..., reason: "IMMUTABLE_FIELD", fields: ["amountPesewas"] }]
+###    and the stored row unchanged on read-back.
+POST {{base}}/sync
+Content-Type: application/json
+
+{
+  "since": null,
+  "entries": [
+    {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "businessDate": "2026-07-25",
+      "kind": "SALE", "channel": "CASH", "amountPesewas": 99000,
+      "note": "Paracetamol carton",
+      "createdAtDevice": "2026-07-25T16:12:04.000Z",
+      "voidedAt": null, "voidReason": null
+    }
+  ],
+  "dayCloses": []
+}
+
+### 7. Read back via a since delta (empty push). Use an old timestamp to see
+###    all three entries; a recent one to see none.
+POST {{base}}/sync
+Content-Type: application/json
+
+{ "since": "2000-01-01T00:00:00.000Z", "entries": [], "dayCloses": [] }
+
+### 8. CSV export
+GET {{base}}/me/export
