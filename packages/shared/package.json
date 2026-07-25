@@ -1,0 +1,27 @@
+{
+  "name": "@daybook/shared",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./money": "./src/money.ts",
+    "./businessDate": "./src/businessDate.ts",
+    "./totals": "./src/totals.ts",
+    "./types": "./src/types.ts",
+    "./schemas": "./src/schemas.ts",
+    "./phone": "./src/phone.ts",
+    "./pin": "./src/pin.ts",
+    "./csv": "./src/csv.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "vitest": "^1.6.0"
+  }
+}

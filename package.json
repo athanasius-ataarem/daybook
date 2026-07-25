@@ -1,0 +1,25 @@
+{
+  "name": "daybook",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @daybook/api --filter @daybook/web run dev",
+    "build": "pnpm -r run build",
+    "test": "pnpm -r --workspace-concurrency=1 run test",
+    "typecheck": "pnpm -r run typecheck",
+    "lint": "eslint .",
+    "db:migrate": "pnpm --filter @daybook/api run db:migrate",
+    "db:seed": "pnpm --filter @daybook/api run db:seed"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "eslint": "^9.9.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.2.0"
+  }
+}
