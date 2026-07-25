@@ -1,0 +1,245 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1660 850" width="1660" height="850" font-family="'IBM Plex Sans', Helvetica, Arial, sans-serif">
+  <style>
+    .amt { font-family: 'Archivo', 'IBM Plex Sans', Helvetica, sans-serif; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .lbl { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; fill: #5B6469; }
+    .bdy { font-size: 14px; fill: #14181B; }
+    .sec { font-size: 12px; fill: #5B6469; }
+    .meta { font-size: 10px; fill: #5B6469; }
+    .frame { fill: #F7F8F5; stroke: #C6CCC2; stroke-width: 1.5; }
+    .card { fill: #FFFFFF; stroke: #DCE0D9; stroke-width: 1; }
+    .rule { stroke: #DCE0D9; stroke-width: 1; }
+    .btn { fill: #14181B; }
+    .btn-t { fill: #FFFFFF; font-size: 14px; font-weight: 600; }
+    .ghost { fill: none; stroke: #14181B; stroke-width: 1.5; }
+    .cash { fill: #1F6F4A; }
+    .momo { fill: #B5780A; }
+    .short { fill: #A81E14; }
+    .title { font-size: 15px; font-weight: 600; fill: #14181B; letter-spacing: 0.02em; }
+    .note { font-size: 10.5px; fill: #7A8288; font-style: italic; }
+  </style>
+
+  <rect width="1660" height="850" fill="#EEF0EB"/>
+  <text x="44" y="34" font-size="17" font-weight="600" fill="#14181B">Daybook — v1 wireframes</text>
+  <text x="44" y="54" class="sec">360 × 680 reference. Colour is semantic: green = cash, ochre = MoMo, red = shortage. Follow structure and proportion, not pixel values.</text>
+
+  <!-- ================= FRAME 1 : TODAY ================= -->
+  <g>
+    <text x="44" y="86" class="title">1 · Today</text>
+    <rect x="44" y="96" width="360" height="680" rx="6" class="frame"/>
+
+    <!-- header -->
+    <text x="60" y="124" class="bdy" font-weight="600">Mawuli Pharmacy</text>
+    <text x="60" y="140" class="sec">Today · Sat 25 Jul</text>
+    <circle cx="358" cy="126" r="5" fill="#1F6F4A"/>
+    <text x="372" y="130" font-size="16" fill="#5B6469">⋮</text>
+    <line x1="44" y1="152" x2="404" y2="152" class="rule"/>
+
+    <!-- position card -->
+    <rect x="60" y="164" width="328" height="150" rx="4" class="card"/>
+    <text x="76" y="188" class="lbl">NET TODAY</text>
+    <text x="372" y="218" class="amt" font-size="40" fill="#14181B" text-anchor="end">GH₵1,920.00</text>
+    <line x1="76" y1="238" x2="372" y2="238" class="rule"/>
+    <text x="76" y="260" class="bdy">Money in</text>
+    <text x="372" y="260" class="amt" font-size="19" text-anchor="end" fill="#14181B">GH₵2,100.00</text>
+    <text x="76" y="276" class="sec"><tspan class="cash">Cash 1,240.00</tspan>  ·  <tspan class="momo">MoMo 860.00</tspan></text>
+    <text x="76" y="298" class="bdy">Money out</text>
+    <text x="372" y="298" class="amt" font-size="19" text-anchor="end" fill="#14181B">GH₵180.00</text>
+    <text x="76" y="312" class="sec"><tspan class="cash">Cash 180.00</tspan>  ·  <tspan class="momo">MoMo 0.00</tspan></text>
+
+    <!-- entries -->
+    <text x="60" y="344" class="lbl">TODAY'S ENTRIES</text>
+    <line x1="60" y1="354" x2="388" y2="354" class="rule"/>
+
+    <g>
+      <text x="60" y="380" class="amt" font-size="20" fill="#1F6F4A">+GH₵240.00</text>
+      <text x="60" y="396" class="sec">Cash · Paracetamol carton</text>
+      <text x="388" y="380" class="meta" text-anchor="end">4:12 pm</text>
+      <line x1="60" y1="410" x2="388" y2="410" class="rule"/>
+    </g>
+    <g>
+      <text x="60" y="436" class="amt" font-size="20" fill="#B5780A">+GH₵85.00</text>
+      <text x="60" y="452" class="sec">MoMo · Sale</text>
+      <text x="388" y="436" class="meta" text-anchor="end">3:48 pm</text>
+      <line x1="60" y1="466" x2="388" y2="466" class="rule"/>
+    </g>
+    <g>
+      <text x="60" y="492" class="amt" font-size="20" fill="#1F6F4A">−GH₵180.00</text>
+      <text x="60" y="508" class="sec">Cash · Fuel for generator</text>
+      <text x="388" y="492" class="meta" text-anchor="end">1:20 pm</text>
+      <line x1="60" y1="522" x2="388" y2="522" class="rule"/>
+    </g>
+    <g opacity="0.45">
+      <text x="60" y="548" class="amt" font-size="20" fill="#1F6F4A" text-decoration="line-through">+GH₵50.00</text>
+      <text x="164" y="548" class="lbl" fill="#A81E14">VOIDED</text>
+      <text x="60" y="564" class="sec">Cash · entered twice</text>
+      <text x="388" y="548" class="meta" text-anchor="end">11:04 am</text>
+    </g>
+    <text x="60" y="592" class="note">Swipe a row left → Void.  Long-press → edit note.  Voided rows never move or hide.</text>
+
+    <!-- footer button -->
+    <rect x="60" y="612" width="328" height="48" rx="4" class="ghost"/>
+    <text x="224" y="642" font-size="14" font-weight="600" fill="#14181B" text-anchor="middle">Close the day</text>
+
+    <!-- bottom bar + FAB -->
+    <line x1="44" y1="700" x2="404" y2="700" class="rule"/>
+    <text x="120" y="742" font-size="12" font-weight="600" fill="#14181B" text-anchor="middle">Today</text>
+    <text x="232" y="742" font-size="12" fill="#5B6469" text-anchor="middle">History</text>
+    <circle cx="358" cy="700" r="30" fill="#14181B"/>
+    <text x="358" y="710" font-size="28" fill="#FFFFFF" text-anchor="middle">+</text>
+  </g>
+
+  <!-- ================= FRAME 2 : ENTRY SHEET ================= -->
+  <g>
+    <text x="448" y="86" class="title">2 · Entry sheet</text>
+    <rect x="448" y="96" width="360" height="680" rx="6" class="frame"/>
+
+    <text x="464" y="124" class="sec">✕</text>
+    <text x="792" y="182" class="amt" font-size="44" fill="#14181B" text-anchor="end">GH₵120.00</text>
+    <text x="792" y="204" class="sec" text-anchor="end">Today · 25 Jul  ▾</text>
+    <line x1="464" y1="220" x2="792" y2="220" class="rule"/>
+
+    <!-- toggle 1 -->
+    <rect x="464" y="236" width="328" height="46" rx="4" class="card"/>
+    <rect x="465" y="237" width="163" height="44" rx="3" fill="#14181B"/>
+    <text x="546" y="265" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">Money in</text>
+    <text x="710" y="265" font-size="14" fill="#5B6469" text-anchor="middle">Money out</text>
+
+    <!-- toggle 2 -->
+    <rect x="464" y="292" width="328" height="46" rx="4" class="card"/>
+    <rect x="465" y="293" width="163" height="44" rx="3" fill="#1F6F4A"/>
+    <text x="546" y="321" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">Cash</text>
+    <text x="710" y="321" font-size="14" fill="#B5780A" font-weight="600" text-anchor="middle">MoMo</text>
+
+    <text x="464" y="366" font-size="13" fill="#14181B" text-decoration="underline">Add note</text>
+
+    <!-- keypad -->
+    <text x="464" y="392" class="lbl">AMOUNT KEYPAD — CUSTOM, NOT THE OS KEYBOARD</text>
+    <g class="card">
+      <rect x="464" y="402" width="106" height="58" rx="4"/><rect x="575" y="402" width="106" height="58" rx="4"/><rect x="686" y="402" width="106" height="58" rx="4"/>
+      <rect x="464" y="466" width="106" height="58" rx="4"/><rect x="575" y="466" width="106" height="58" rx="4"/><rect x="686" y="466" width="106" height="58" rx="4"/>
+      <rect x="464" y="530" width="106" height="58" rx="4"/><rect x="575" y="530" width="106" height="58" rx="4"/><rect x="686" y="530" width="106" height="58" rx="4"/>
+      <rect x="464" y="594" width="106" height="58" rx="4"/><rect x="575" y="594" width="106" height="58" rx="4"/><rect x="686" y="594" width="106" height="58" rx="4"/>
+    </g>
+    <g class="amt" font-size="22" fill="#14181B" text-anchor="middle">
+      <text x="517" y="439">1</text><text x="628" y="439">2</text><text x="739" y="439">3</text>
+      <text x="517" y="503">4</text><text x="628" y="503">5</text><text x="739" y="503">6</text>
+      <text x="517" y="567">7</text><text x="628" y="567">8</text><text x="739" y="567">9</text>
+      <text x="517" y="631">.</text><text x="628" y="631">0</text><text x="739" y="631" font-size="18">⌫</text>
+    </g>
+
+    <rect x="464" y="676" width="328" height="54" rx="4" class="btn"/>
+    <text x="628" y="710" class="btn-t" text-anchor="middle">Save</text>
+    <text x="464" y="752" class="note">On save: haptic tick, sheet closes, row animates in. No toast. No dialog.</text>
+  </g>
+
+  <!-- ================= FRAME 3 : CLOSE THE DAY ================= -->
+  <g>
+    <text x="852" y="86" class="title">3 · Close the day  ← signature screen</text>
+    <rect x="852" y="96" width="360" height="680" rx="6" class="frame"/>
+
+    <text x="868" y="126" class="bdy" font-weight="600">Close the day</text>
+    <text x="868" y="142" class="sec">Sat 25 Jul</text>
+    <line x1="852" y1="154" x2="1212" y2="154" class="rule"/>
+
+    <!-- input 1 -->
+    <text x="868" y="180" class="bdy">How much cash is in the drawer?</text>
+    <rect x="868" y="188" width="328" height="50" rx="4" class="card"/>
+    <text x="1180" y="221" class="amt" font-size="22" fill="#1F6F4A" text-anchor="end">GH₵1,215.00</text>
+
+    <!-- input 2 -->
+    <text x="868" y="266" class="bdy">What does your MoMo balance say?</text>
+    <rect x="868" y="274" width="328" height="50" rx="4" class="card"/>
+    <text x="1180" y="307" class="amt" font-size="22" fill="#B5780A" text-anchor="end">GH₵860.00</text>
+
+    <!-- variance card -->
+    <rect x="868" y="344" width="328" height="150" rx="4" class="card" stroke="#14181B" stroke-width="1.5"/>
+    <text x="884" y="368" class="lbl">EXPECTED</text>
+    <text x="1050" y="368" class="lbl" text-anchor="middle">COUNTED</text>
+    <text x="1180" y="368" class="lbl" text-anchor="end">DIFFERENCE</text>
+    <line x1="884" y1="376" x2="1180" y2="376" class="rule"/>
+
+    <text x="884" y="404" class="sec cash" font-weight="600">Cash</text>
+    <text x="884" y="424" class="amt" font-size="14" fill="#5B6469">1,240.00</text>
+    <text x="1050" y="424" class="amt" font-size="14" fill="#5B6469" text-anchor="middle">1,215.00</text>
+    <text x="1180" y="426" class="amt" font-size="21" fill="#A81E14" text-anchor="end">−25.00</text>
+    <line x1="884" y1="438" x2="1180" y2="438" class="rule"/>
+
+    <text x="884" y="462" class="sec momo" font-weight="600">MoMo</text>
+    <text x="884" y="482" class="amt" font-size="14" fill="#5B6469">860.00</text>
+    <text x="1050" y="482" class="amt" font-size="14" fill="#5B6469" text-anchor="middle">860.00</text>
+    <text x="1180" y="484" class="amt" font-size="21" fill="#5B6469" text-anchor="end">0.00</text>
+
+    <text x="868" y="522" font-size="15" font-weight="600" fill="#A81E14">Your cash is short by GH₵25.00.</text>
+    <text x="868" y="540" class="note">aria-live region — outcome must not rely on colour alone.</text>
+
+    <rect x="868" y="556" width="158" height="46" rx="4" class="ghost"/>
+    <text x="947" y="584" font-size="13" font-weight="600" fill="#14181B" text-anchor="middle">Record it</text>
+    <rect x="1038" y="556" width="158" height="46" rx="4" class="ghost"/>
+    <text x="1117" y="584" font-size="13" fill="#5B6469" text-anchor="middle">Leave it</text>
+
+    <rect x="868" y="626" width="328" height="54" rx="4" class="btn"/>
+    <text x="1032" y="660" class="btn-t" text-anchor="middle">Send to WhatsApp</text>
+    <rect x="868" y="692" width="328" height="48" rx="4" fill="none"/>
+    <text x="1032" y="722" font-size="14" fill="#5B6469" text-anchor="middle">Done</text>
+  </g>
+
+  <!-- ================= FRAME 4 : HISTORY ================= -->
+  <g>
+    <text x="1256" y="86" class="title">4 · History</text>
+    <rect x="1256" y="96" width="360" height="680" rx="6" class="frame"/>
+
+    <text x="1272" y="126" class="bdy" font-weight="600">History</text>
+    <text x="1272" y="142" class="sec">Last 30 days</text>
+    <line x1="1256" y1="154" x2="1616" y2="154" class="rule"/>
+
+    <g>
+      <circle cx="1280" cy="186" r="4" fill="#A81E14"/>
+      <text x="1298" y="184" class="bdy">Sat 25 Jul</text>
+      <text x="1298" y="200" class="sec short">short GH₵25.00</text>
+      <text x="1600" y="192" class="amt" font-size="19" fill="#14181B" text-anchor="end">GH₵1,920.00</text>
+      <line x1="1272" y1="214" x2="1600" y2="214" class="rule"/>
+    </g>
+    <g>
+      <circle cx="1280" cy="242" r="4" fill="#1F6F4A"/>
+      <text x="1298" y="240" class="bdy">Fri 24 Jul</text>
+      <text x="1298" y="256" class="sec">everything matched</text>
+      <text x="1600" y="248" class="amt" font-size="19" fill="#14181B" text-anchor="end">GH₵2,340.00</text>
+      <line x1="1272" y1="270" x2="1600" y2="270" class="rule"/>
+    </g>
+    <g>
+      <circle cx="1280" cy="298" r="4" fill="#1F6F4A"/>
+      <text x="1298" y="296" class="bdy">Thu 23 Jul</text>
+      <text x="1298" y="312" class="sec">everything matched</text>
+      <text x="1600" y="304" class="amt" font-size="19" fill="#14181B" text-anchor="end">GH₵1,105.00</text>
+      <line x1="1272" y1="326" x2="1600" y2="326" class="rule"/>
+    </g>
+    <g>
+      <circle cx="1280" cy="354" r="4" fill="#DCE0D9" stroke="#C6CCC2"/>
+      <text x="1298" y="352" class="bdy">Wed 22 Jul</text>
+      <text x="1298" y="368" class="sec">not closed</text>
+      <text x="1600" y="360" class="amt" font-size="19" fill="#5B6469" text-anchor="end">GH₵980.00</text>
+      <line x1="1272" y1="382" x2="1600" y2="382" class="rule"/>
+    </g>
+    <g>
+      <circle cx="1280" cy="410" r="4" fill="#A81E14"/>
+      <text x="1298" y="408" class="bdy">Tue 21 Jul</text>
+      <text x="1298" y="424" class="sec short">short GH₵12.00</text>
+      <text x="1600" y="416" class="amt" font-size="19" fill="#14181B" text-anchor="end">GH₵1,760.00</text>
+      <line x1="1272" y1="438" x2="1600" y2="438" class="rule"/>
+    </g>
+    <g>
+      <circle cx="1280" cy="466" r="4" fill="#A81E14"/>
+      <text x="1298" y="464" class="bdy">Mon 20 Jul</text>
+      <text x="1298" y="480" class="sec">over GH₵5.00</text>
+      <text x="1600" y="472" class="amt" font-size="19" fill="#14181B" text-anchor="end">GH₵2,010.00</text>
+      <line x1="1272" y1="494" x2="1600" y2="494" class="rule"/>
+    </g>
+
+    <text x="1272" y="528" class="note">Tap a day → read-only entries + that day's close summary.</text>
+    <text x="1272" y="546" class="note">No filters. No search. No month picker. Export lives in the ⋮ menu.</text>
+
+    <line x1="1256" y1="700" x2="1616" y2="700" class="rule"/>
+    <text x="1332" y="742" font-size="12" fill="#5B6469" text-anchor="middle">Today</text>
+    <text x="1444" y="742" font-size="12" font-weight="600" fill="#14181B" text-anchor="middle">History</text>
+  </g>
+</svg>
